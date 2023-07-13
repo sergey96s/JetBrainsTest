@@ -1,5 +1,6 @@
 package com.example.jetbrainstest.tests;
 
+import com.example.jetbrainstest.pages.RubyPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -13,18 +14,28 @@ public class BaseTest {
 
     @BeforeEach
     public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        // Fix the issue https://github.com/SeleniumHQ/selenium/issues/11750
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
+        getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public static WebDriver getDriver(){
+        if (driver == null)
+            createDriver();
+        if (driver.toString().contains("(null)"))
+            createDriver();
         return driver;
     }
 
+    private static void createDriver(){
+        ChromeOptions options = new ChromeOptions();
+        // Fix the issue https://github.com/SeleniumHQ/selenium/issues/11750
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+    }
+    public RubyPage getRubyPage(){
+        return new RubyPage(driver);
+    }
     @AfterEach
     public void tearDown() {
         driver.quit();
