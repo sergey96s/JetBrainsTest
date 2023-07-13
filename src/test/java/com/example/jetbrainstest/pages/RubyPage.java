@@ -5,8 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RubyPage {
+
+    private final Logger LOG = LoggerFactory.getLogger(RubyPage.class);
     WebDriver driver;
     @FindBy(css = ".menu-second-title-box__title.wt-h3")
     private WebElement rubyMineButton;
@@ -19,26 +23,26 @@ public class RubyPage {
     private WebElement firstScreenshot;
 
     public Boolean checkIfDownloadButtonIsClickable() {
-        System.out.println("Проверка активности кнопки загрузки");
+        LOG.info("Проверка активности кнопки загрузки");
         return downloadButton.isEnabled();
     }
 
     public String clickrubyMineButtonCheckUrl() {
         driver.get("https://www.jetbrains.com/ruby/");
         rubyMineButton.click();
-        System.out.println("Проверка урла страницы при переходе по кнопке 'RubyMine'");
+        LOG.info("Проверка урла страницы при переходе по кнопке 'RubyMine'");
         return driver.getCurrentUrl();
     }
     public Boolean checkPromotionButtonIsClickable() {
-        System.out.println("Проверка активности кнопки загрузки");
+        LOG.info("Проверка активности кнопки загрузки");
         return promotionButton.isEnabled();
+    }
+    public Boolean checkFirstScreenshotIsVisible() {
+        LOG.info("Проверка отображения первого скриншота");
+        return firstScreenshot.isDisplayed();
     }
     public RubyPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-    }
-    public Boolean checkFirstScreenshotIsVisible() {
-        System.out.println("Проверка отображения первого скриншота");
-        return firstScreenshot.isDisplayed();
     }
 }
