@@ -1,6 +1,7 @@
 package com.example.jetbrainstest.pages;
 
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,22 +22,24 @@ public class RubyPage {
     private WebElement promotionButton;
     @FindBy(css = "img[src ='/ruby/img/screenshots/smart_editor@2x.png']")
     private WebElement firstScreenshot;
-
+    @Step("Проверка активности кнопки загрузки")
     public Boolean checkIfDownloadButtonIsClickable() {
         LOG.info("Проверка активности кнопки загрузки");
         return downloadButton.isEnabled();
     }
-
+    @Step("Проверка урла страницы при переходе по кнопке 'RubyMine'")
     public String clickrubyMineButtonCheckUrl() {
         driver.get("https://www.jetbrains.com/ruby/");
         rubyMineButton.click();
         LOG.info("Проверка урла страницы при переходе по кнопке 'RubyMine'");
         return driver.getCurrentUrl();
     }
+    @Step("Проверка активности кнопки загрузки")
     public Boolean checkPromotionButtonIsClickable() {
         LOG.info("Проверка активности кнопки загрузки");
         return promotionButton.isEnabled();
     }
+    @Step("Проверка отображения первого скриншота")
     public Boolean checkFirstScreenshotIsVisible() {
         LOG.info("Проверка отображения первого скриншота");
         return firstScreenshot.isDisplayed();
