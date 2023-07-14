@@ -11,12 +11,12 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GoLangTest extends BaseTest{
+public class GoLangTest extends BaseTest {
     private GoLangPage GoLangPage;
 
     @BeforeEach
     @Override
-    public void setUp(){
+    public void setUp() {
         super.setUp();
         getDriver().get("https://www.jetbrains.com/go/");
         GoLangPage = new GoLangPage(getDriver());
@@ -24,18 +24,20 @@ public class GoLangTest extends BaseTest{
 
     @Test
     @DisplayName("Проверка активности кнопки скачивания")
-    public void downloadButtonCheck(){
+    public void downloadButtonCheck() {
         assertTrue(GoLangPage.checkIfDownloadButtonIsClickable(), "Кнопка скачивания не активна");
     }
+
     @Test
     @DisplayName("Проверка текста Free 30-day trial")
-    public void checkTextFreeDays(){
-        assertEquals("Free 30-day trial",GoLangPage.checkTextFreeDays(),
+    public void checkTextFreeDays() {
+        assertEquals("Free 30-day trial", GoLangPage.checkTextFreeDays(),
                 "Надписи Free 30-day tria нет");
     }
+
     @Test
     @DisplayName("Проверка доступности кнопок подписки")
-    public void followLinksCheck(){
+    public void followLinksCheck() {
         assertTrue(GoLangPage.checkFollowLinksIsClickable(), "Кнопка или кнопки подписки не активны");
     }
 

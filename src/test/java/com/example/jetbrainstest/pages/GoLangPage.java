@@ -38,11 +38,14 @@ public class GoLangPage {
         return value;
     }
 
-    public Boolean checkFollowLinksIsClickable(){
-        LOG.info("Проверка кликабельности кнопок подписки на иные ресурсы");
-        boolean enabled = false;
-        for (WebElement links : followLinks)
-            enabled = links.isEnabled() ? true : false;
+    public Boolean checkFollowLinksIsClickable() {
+        System.out.println("Проверка кликабельности кнопок подписки на иные ресурсы");
+        boolean enabled = true;
+        for (WebElement link : followLinks) {
+            System.out.println("Проверка ссылки " + link.getAttribute("href"));
+            enabled &= link.isEnabled();
+        }
+
         return enabled;
     }
 
