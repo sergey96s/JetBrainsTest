@@ -25,21 +25,21 @@ public class RubyPage {
     private WebElement firstScreenshot;
 
     public Boolean checkIfDownloadButtonIsClickable() {
-        LOG.info("Проверка активности кнопки загрузки");
+        LOG.infoWithScreenshot("Проверка активности кнопки загрузки");
         return downloadButton.isEnabled();
     }
     public String clickrubyMineButtonCheckUrl() {
         driver.get("https://www.jetbrains.com/ruby/");
         rubyMineButton.click();
-        LOG.info("Проверка урла страницы при переходе по кнопке 'RubyMine'");
+        LOG.infoWithScreenshot("Проверка урла страницы при переходе по кнопке 'RubyMine'");
         return driver.getCurrentUrl();
     }
     public Boolean checkPromotionButtonIsClickable() {
-        LOG.info("Проверка активности кнопки загрузки");
+        LOG.infoWithScreenshot("Проверка активности кнопки загрузки");
         return promotionButton.isEnabled();
     }
     public Boolean checkFirstScreenshotIsVisible() {
-        LOG.info("Проверка отображения первого скриншота");
+        LOG.infoWithScreenshot("Проверка отображения первого скриншота");
         return firstScreenshot.isDisplayed();
     }
     public RubyPage(WebDriver driver) {

@@ -2,6 +2,7 @@ package com.example.jetbrainstest.tests;
 
 // page_url = https://www.jetbrains.com/ruby/
 
+import com.example.jetbrainstest.AllureAttachmentsManager;
 import com.example.jetbrainstest.MyExtension;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
