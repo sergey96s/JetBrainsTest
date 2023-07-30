@@ -1,6 +1,7 @@
 package com.example.jetbrainstest.tests;
 
-import com.example.jetbrainstest.pages.RubyPage;
+import com.example.jetbrainstest.pages.rubypage.RubyFeaturesPage;
+import com.example.jetbrainstest.pages.rubypage.RubyPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -31,10 +32,14 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         // Fix the issue https://github.com/SeleniumHQ/selenium/issues/11750
         options.addArguments("--remote-allow-origins=*");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\serzh\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver(options);
     }
     public RubyPage getRubyPage(){
         return new RubyPage(driver);
+    }
+    public RubyFeaturesPage getRubyFeaturesPage(){
+        return new RubyFeaturesPage(driver);
     }
     @AfterEach
     public void tearDown() {
