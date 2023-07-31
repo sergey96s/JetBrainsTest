@@ -13,13 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.openqa.selenium.WebDriver;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
  @ExtendWith(MyExtension.class)
  public class RubyTest extends BaseTest {
-
     @BeforeEach
     @Override
     @Step
@@ -127,7 +129,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
      }
      @ParameterizedTest(name = "#{index} - проверка на невалидность email {0}")
      @CsvSource({"rtfg", "vcb@sd", "sd.2e@d"})
-     @Test
      @DisplayName("Проверка сообщения при вводе невалидного email")
      public void enterInvalidBussinesEmail(String email) {
         String invalidBussinesEmailMessage = getRubyPage().enterInvalidBussinesEmailAndGetWarning(email);

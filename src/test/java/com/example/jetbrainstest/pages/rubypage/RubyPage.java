@@ -6,9 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class RubyPage {
     private final AllureLogger LOG = new AllureLogger(LoggerFactory.getLogger(RubyPage.class));
@@ -35,9 +38,9 @@ public class RubyPage {
     private WebElement inputEmail;
     @FindBy(xpath = "//button[contains(text(), 'Request a call')]")
     private WebElement buttonRequestACall;
-
     @FindBy(css = "[data-test=\"error-message\"]")
-    private List<WebElement> errorMessageInvalidEmail;
+    private WebElement errorMessageInvalidEmail;
+
     public Boolean checkIfDownloadButtonIsClickable() {
         LOG.infoWithScreenshot("Проверка активности кнопки загрузки");
         return downloadButton.isEnabled();
@@ -102,7 +105,8 @@ public class RubyPage {
     public String enterInvalidBussinesEmailAndGetWarning(String email) {
         enterBussinesEmail(email);
         LOG.info("Получение сообщения при вводе невалидного email");
-        return errorMessageInvalidEmail.get(2).getText();
+
+        return errorMessageInvalidEmail.getText();
     }
     public RubyPage(WebDriver driver) {
         this.driver = driver;
