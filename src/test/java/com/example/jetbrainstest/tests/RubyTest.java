@@ -1,10 +1,7 @@
 package com.example.jetbrainstest.tests;
 
 // page_url = https://www.jetbrains.com/ruby/
-
-import com.example.jetbrainstest.AllureAttachmentsManager;
 import com.example.jetbrainstest.MyExtension;
-import com.example.jetbrainstest.pages.rubypage.RubyPage;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,10 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -103,7 +96,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
          assertTrue(getRubyFeaturesPage().checkWindowsExeDownloadButton(), "Кнопка скачивания в формате .exe (Windows) недоступна");
      }
      @Test
-     @DisplayName("Проверка доступности кнопки скачивания в формате .zip(Windows)")
+     @DisplayName("Проверка количества скриншотов на странице Features")
      public void checkCountOfImgFeatures() {
          getRubyPage().clickFeaturesButton();
          Assertions.assertEquals(getRubyFeaturesPage().getCountOfImgFeatures(), 48, "Изображений не 48");
@@ -137,7 +130,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
      @Test
      @DisplayName("Проверка сообщения при вводе пустого email")
      public void enterEmptyBussinesEmail() {
-         String emptyBussinesEmailMessage = getRubyPage().enterInvalidBussinesEmailAndGetWarning("");
+         String emptyBussinesEmailMessage = getRubyPage().enterEmptyBussinesEmailAndGetWarning("");
          assertEquals(emptyBussinesEmailMessage, "This field is required.", "Сообщение о необходимости заполнить поле email не соответствует ожидаемому");
      }
  }

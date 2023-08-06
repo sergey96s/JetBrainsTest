@@ -6,12 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.LoggerFactory;
-
-import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class RubyPage {
     private final AllureLogger LOG = new AllureLogger(LoggerFactory.getLogger(RubyPage.class));
@@ -38,9 +34,10 @@ public class RubyPage {
     private WebElement inputEmail;
     @FindBy(xpath = "//button[contains(text(), 'Request a call')]")
     private WebElement buttonRequestACall;
-    @FindBy(css = "[data-test=\"error-message\"]")
+    @FindBy(xpath = "//div[contains(text(), 'Please enter a valid email address.')]")
     private WebElement errorMessageInvalidEmail;
-
+    @FindBy(xpath = "//div[contains(text(), 'This field is required.')]")
+    private WebElement errorMessageEmptyEmail;
     public Boolean checkIfDownloadButtonIsClickable() {
         LOG.infoWithScreenshot("Проверка активности кнопки загрузки");
         return downloadButton.isEnabled();
@@ -89,7 +86,7 @@ public class RubyPage {
         return statisticRubyBanner.isEnabled();
     }
     public Boolean checkStatisticBannerIsVisible() {
-        LOG.infoWithScreenshot("Проверка отображения первого скриншота");
+        LOG.infoWithScreenshot("Проверка видимости баннера, переводящего на страницу со статистикой использования разработчиками");
         return statisticRubyBanner.isDisplayed();
     }
     public String clickStatisticBannerCheckUrl() {
@@ -105,8 +102,12 @@ public class RubyPage {
     public String enterInvalidBussinesEmailAndGetWarning(String email) {
         enterBussinesEmail(email);
         LOG.info("Получение сообщения при вводе невалидного email");
-
         return errorMessageInvalidEmail.getText();
+    }
+    public String enterEmptyBussinesEmailAndGetWarning(String email) {
+        enterBussinesEmail(email);
+        LOG.info("Получение сообщения при вводе пустого email");
+        return errorMessageEmptyEmail.getText();
     }
     public RubyPage(WebDriver driver) {
         this.driver = driver;
