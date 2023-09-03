@@ -12,6 +12,7 @@ import java.util.List;
 public class RubyFeaturesPage {
     private final AllureLogger LOG = new AllureLogger(LoggerFactory.getLogger(RubyFeaturesPage.class));
     WebDriver driver;
+
     public RubyFeaturesPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -29,32 +30,39 @@ public class RubyFeaturesPage {
     private WebElement buttonMoreIsAutocomplete;
     @FindBy(xpath = "//span[contains(text(), '.exe (Windows ARM64)')]")
     private WebElement exeWindowsArm64DownloadButton;
+
     public Integer getCountOfPointsSideBar() {
-        LOG.infoWithScreenshot("Проверка, что на боковой панели 10 заголовков");
+        LOG.info("Проверка, что на боковой панели 10 заголовков");
         return sideBar.size();
     }
+
     public void clickListExe() {
-        LOG.infoWithScreenshot("Клик по выпадающему списку .exe");
+        LOG.info("Клик по выпадающему списку .exe");
         exeListButton.click();
     }
+
     public boolean checkWindowsExeDownloadButton() {
-        LOG.infoWithScreenshot("Проверка работоспособности кнопки '.exe (Windows)' в выпадающем списке");
+        LOG.info("Проверка работоспособности кнопки '.exe (Windows)' в выпадающем списке");
         return exeWindowsDownloadButton.isEnabled();
     }
+
     public Integer getCountOfImgFeatures() {
-        LOG.infoWithScreenshot("Проверка количества изображений на странице");
+        LOG.info("Проверка количества изображений на странице");
         return imgFeatures.size();
     }
+
     public boolean checkButtonMoreIsAutocomplete() {
-        LOG.infoWithScreenshot("Проверка работоспособности кнопки 'More' в блоке 'Autocomplete'");
+        LOG.info("Проверка работоспособности кнопки 'More' в блоке 'Autocomplete'");
         return buttonMoreIsAutocomplete.isEnabled();
     }
+
     public boolean checkVisibledButtonMoreIsAutocomplete() {
-        LOG.infoWithScreenshot("Проверка видимости кнопки 'More' в блоке 'Autocomplete'");
+        LOG.info("Проверка видимости кнопки 'More' в блоке 'Autocomplete'");
         return buttonMoreIsAutocomplete.isDisplayed();
     }
+
     public boolean checkWindowsArm64ExeDownloadButton() {
-        LOG.infoWithScreenshot("Проверка видимости кнопки '.exe (Windows ARM64)' в выпадающем списке");
+        LOG.info("Проверка видимости кнопки '.exe (Windows ARM64)' в выпадающем списке");
         return exeWindowsArm64DownloadButton.isDisplayed();
     }
 }
